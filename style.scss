@@ -1,0 +1,45 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.header-test {
+  background-color: #e6b3ab;
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  h1 {
+    text-align: center;
+    font-size: 4vw;
+    color: #242424;
+  }
+  p {
+    max-width: 800px;
+    text-align: center;
+    color: #242424;
+  }
+}
+
+#three-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.scroll-div {
+  height: 500px;
+  width: 100%;
+}
+
+// h1 {
+//   text-align: center;
+//   font-size: 4vw;
+//   color: blue;
+// }
