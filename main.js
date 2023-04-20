@@ -3,6 +3,7 @@ import './style.scss'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -16,19 +17,27 @@ const renderer = new THREE.WebGLRenderer({
   stencil: true,
 });
 
-
 const controls = new OrbitControls( camera, renderer.domElement );
 renderer.setSize( window.innerWidth, window.innerHeight );
 
-const loader = new GLTFLoader();
 
-loader.load('/martini-glass.glb', function ( gltf ) {
+// Model Loaders
+const gltfLoader = new GLTFLoader();
+const dLoader = new DRACOLoader();
+dLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+dLoader.setDecoderConfig({ type: 'js' });
+gltfLoader.setDRACOLoader(dLoader);
 
-  const glass = gltf.scene.children.find(name => name.name === "martini_Cube014")
+
+let glassMesh;
+
+gltfLoader.load('/martini-glass-compressed.glb', function ( gltf ) {
+
+  const glass = gltf.scene.getObjectByName("martini_Cube014")
   const glassGeometry = glass.geometry.clone()
-  const glassMesh = new THREE.Mesh(glassGeometry, glassMaterial)
-  glassMesh.position.set(13.5, -1, 10)
-  glassMesh.scale.set(10, 10, 10)
+  glassMesh = new THREE.Mesh(glassGeometry, glassMaterial)
+  glassMesh.position.set(1, -1, 0)
+  glassMesh.scale.set(15, 15, 15)
 	scene.add(glassMesh);
 
   glass.geometry.dispose();
