@@ -4,14 +4,60 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/cocktail-logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Le Cocktail du Web</title>
   </head>
   <body>
+    <div class="loader"></div>
     <canvas id="three-canvas"></canvas>
-    <div class="header-test">
-      <h1>Le Cocktail du Web</h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, corporis illo nesciunt qui placeat accusamus aliquam dignissimos laudantium similique atque sint. Quis asperiores ab magnam sit nisi sed. Deserunt, cumque.</p>
-    </div>
+    <a id="main-logo" href="">
+      <img src="/cocktail-logo.svg" alt="Le Cocktail du Web" draggable="false"/>
+    </a>
+    <button class="menu-nav-button">
+      <svg id="nav-logo" viewBox="0 0 101 106" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M59.492 96.9399C48.4627 97.037 37.8489 92.5427 29.9854 84.4455C22.122 76.3483 17.653 65.3116 17.5617 53.7633C17.4705 42.2151 21.7643 31.1012 29.4986 22.8666C37.233 14.6321 47.7743 9.95141 58.8036 9.85428" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+        <path d="M57.6781 64.179L42.6859 80.1053C40.7741 82.2176 42.8389 83.7888 43.8997 84.4104C46.4901 85.9282 54.7176 88.2712 58.8682 88.1889C61.5463 88.1359 62.4346 86.1688 62.4199 84.6672C62.3653 79.0711 62.3495 66.5483 62.0511 64.9036C61.7074 63.0096 59.1954 62.6103 57.6781 64.179Z" fill="currentColor" stroke="currentColor"/>
+        <path d="M54.4244 60.03L38.4177 76.7581C36.3345 78.7984 35.325 77.6228 34.7081 76.8726C32.3586 74.0153 27.5774 65.5903 26.7208 61.0224C26.2074 58.2848 26.5936 56.9183 28.5037 56.6821C33.8117 56.0258 51.7944 56.4075 53.3905 56.5078C55.2284 56.6234 55.717 58.2544 54.4244 60.03Z" fill="currentColor" stroke="currentColor"/>
+        <path d="M52.9781 50.6416L29.3209 51.2015C26.5519 51.4501 26.4278 48.4296 26.625 47.1737C27.1065 44.1064 30.8025 34.7243 33.4514 31.3771C35.1605 29.2175 36.7417 29.0568 37.8538 30.0049C41.9981 33.5383 53.501 46.0461 54.5431 47.3158C55.7431 48.7778 55.0953 50.3772 52.9781 50.6416Z" fill="currentColor" stroke="currentColor"/>
+        <path d="M57.6268 42.6884L42.3634 27.0515C40.4156 24.9761 42.453 23.3656 43.5029 22.7239C46.0669 21.1567 54.2528 18.6568 58.4041 18.6597C61.0827 18.6615 62.0046 20.6113 62.0158 22.1129C62.0573 27.7091 62.2567 40.2302 61.9866 41.8804C61.6756 43.7806 59.1708 44.2278 57.6268 42.6884Z" fill="currentColor" stroke="currentColor"/>
+        </svg>
+    </button>
+    <section class="header-hero">
+      <div class="hero-layout">
+        <div class="left">
+          <h1>Le Cocktail<br> du <span class="web-hightlight">Web</span></h1>
+          <p>Le Bar qui vous fait progresser en tant que développeur</p>
+        </div>
+        <div class="right"></div>
+      </div>
+      <svg class="section-waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="currentColor" d="M0,192L48,181.3C96,171,192,149,288,154.7C384,160,480,192,576,218.7C672,245,768,267,864,245.3C960,224,1056,160,1152,138.7C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      </svg>
+    </section>
+    <section id="bar-presentation">
+      <div class="layout">
+        <img src="bar/bar_vide.jpg" alt="comptoir de bar">
+        <div class="presentation-text">
+          <h3>Un endroit conviviale</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores facere inventore temporibus ad pariatur tempore similique repudiandae. Repellat eum facilis ullam, quidem at rem ad est repellendus fuga aspernatur.</p>
+        </div>
+        <div class="presentation-text">
+          <h3>Des rencontres sympas</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores facere inventore temporibus ad pariatur tempore similique repudiandae. Repellat eum facilis ullam, quidem at rem ad est repellendus fuga aspernatur.</p>
+        </div>
+        <img src="bar/bar_n&b.jpg" alt="bar avec du monde">
+        <img src="bar/cocktails.jpg" alt="présentation de cocktails">
+        <div class="presentation-text">
+          <h3>Des cocktails uniques</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores facere inventore temporibus ad pariatur tempore similique repudiandae. Repellat eum facilis ullam, quidem at rem ad est repellendus fuga aspernatur.</p>
+        </div>
+      </div>
+      <svg class="section-waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="currentColor" d="M0,224L48,192C96,160,192,96,288,101.3C384,107,480,181,576,197.3C672,213,768,171,864,170.7C960,171,1056,213,1152,208C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      </svg>
+    </section>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

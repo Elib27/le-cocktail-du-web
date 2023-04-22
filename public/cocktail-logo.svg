@@ -1,11 +1,8 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 viewBox="0 0 361.397 361.397" xml:space="preserve">
 <g id="XMLID_1103_">
 	<g id="XMLID_1106_">
 		<g id="XMLID_1105_">
-			
 				<rect id="XMLID_61_" x="208.47" y="1.246" transform="matrix(-0.9766 -0.2151 0.2151 -0.9766 423.2374 171.8619)" style="fill:#2CB79A;" width="25" height="123.313"/>
 		</g>
 	</g>
@@ -32,8 +29,8 @@
 		</g>
 	</g>
 	<g id="XMLID_1126_">
-		<polygon id="XMLID_1127_" style="fill:#F9EC64;" points="91.475,124.549 180.698,213.772 269.921,124.549 		"/>
-		<polygon id="XMLID_1128_" style="fill:#FAE16E;" points="180.698,124.549 180.698,213.772 269.921,124.549 		"/>
+		<polygon id="XMLID_1127_" style="fill:#F9EC64;" points="91.475,124.549 180.698,213.772 269.921,124.549"/>
+		<polygon id="XMLID_1128_" style="fill:#FAE16E;" points="180.698,124.549 180.698,213.772 269.921,124.549"/>
 	</g>
 </g>
 </svg>
