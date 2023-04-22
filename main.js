@@ -1,5 +1,11 @@
 import './style.scss'
 
+const loader = document.querySelector('.loader')
+
+window.addEventListener('load', () => {
+  loader.classList.add('hidden')
+})
+
 // import * as THREE from 'three'
 // import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 // import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';

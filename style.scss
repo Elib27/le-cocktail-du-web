@@ -15,15 +15,54 @@
   padding: 0;
 }
 
-// .loader {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   bottom: 0;
-//   right: 0;
-//   background-color: var(--primary-color);
-//   z-index: 999;
-// }
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  &.hidden {
+    display: none;
+  }
+  .glass {
+    height: 40px;
+    &:nth-child(1) {
+      animation: glassAnimationLeft 1s ease-in-out alternate infinite;
+    }
+    &:nth-child(2) {
+      animation: glassAnimationRight 1s ease-in-out alternate infinite ;
+    }
+  }
+}
+
+@keyframes glassAnimationRight {
+  0% {
+    transform: translate(0px, 0px) rotate(0);
+  }
+  50% {
+    transform: translate(10px, 0px) rotate(-10deg);
+  }
+  100% {
+    transform: translate(-10px, -5px) rotate(-10deg);
+  }
+}
+
+@keyframes glassAnimationLeft {
+  0% {
+    transform: translate(0px, 0px) rotate(0);
+  }
+  50% {
+    transform: translate(-10px, 0px) rotate(10deg);
+  }
+  100% {
+    transform: translate(10px, -5px) rotate(10deg);
+  }
+}
 
 #main-logo {
   position: fixed;
@@ -140,11 +179,6 @@ section {
   position: fixed;
   top: 0;
   left: 0;
-  pointer-events: none;
+  z-index: 10;
+  // pointer-events: none;
 }
-
-// h1 {
-//   text-align: center;
-//   font-size: 4vw;
-//   color: blue;
-// }
