@@ -140,7 +140,7 @@ section {
 }
 
 #header-hero {
-  background-color: var(--secondary-color);
+  background: linear-gradient(135deg, #67a9d8, var(--secondary-color) 70%);
   height: 100vh;
   width: 100vw;
   padding: 5vw;
