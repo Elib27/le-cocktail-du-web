@@ -1,0 +1,124 @@
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  &.hidden {
+    display: none;
+  }
+  .animation-container {
+    display: flex;
+    column-gap: 20px;
+    position: relative;
+    .tchin {
+      height: fit-content;
+      color: var(--gray);
+      font-family: 'Carter One', sans-serif;
+      font-size: 10px;
+      letter-spacing: 1px;
+      position: absolute;
+      opacity: 0;
+      z-index: 1;
+      &:nth-child(1) {
+        top: -12px;
+        left: 50%;
+        animation: text 2.5s 0.85s ease-out infinite;
+      }
+      &:nth-child(2) {
+        top: -22px;
+        left: 45%;
+        animation: text 2.5s 0.95s ease-out infinite;
+      }
+    }
+    .glass {
+      height: 40px;
+    }
+    .trx-left-container {
+      animation: glassXleft 1.25s -0.25s cubic-bezier(0.65, -0.01, 1, 1) infinite alternate;
+      .try-left-container {
+        animation: glassY 1.25s -0.25s cubic-bezier(0.47,-2.52, 0.61, 0.55) infinite alternate;
+        .glass {
+          animation: glassRotateLeft 1.25s -0.25s cubic-bezier(0.32, 0.88, 0.57, 0.96) infinite alternate;
+        }
+      }
+    }
+    .trx-right-container {
+      animation: glassXright 1.25s -0.25s cubic-bezier(0.65, -0.01, 1, 1) infinite alternate;
+      .try-right-container {
+        animation: glassY 1.25s -0.25s cubic-bezier(0.47,-2.52, 0.61, 0.55) infinite alternate;
+      }
+      .glass {
+        animation: glassRotateRight 1.25s -0.25s cubic-bezier(0.32, 0.88, 0.57, 0.96) infinite alternate;
+      }
+    }
+  }
+}
+
+@keyframes text {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0);
+  }
+  8% {
+    transform: translate(-5px, -5px) rotate(-20deg);
+    opacity: 1;
+  }
+  70% {
+    transform: translate(-5px, -5px) rotate(-20deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-5px, -5px) rotate(-20deg);
+  }
+}
+
+@keyframes glassXleft {
+  20% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(15px);
+  }
+}
+
+@keyframes glassXright {
+  20% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-15px);
+  }
+}
+
+@keyframes glassY {
+  20% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes glassRotateLeft {
+  20% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes glassRotateRight {
+  20% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}

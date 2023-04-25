@@ -1,6 +1,12 @@
-import './style.scss'
+import './styles/main.scss'
 
 const loader = document.querySelector('.loader')
+
+const menu = document.querySelector('.menu-nav')
+
+menu.addEventListener('click', () => {
+  menu.classList.toggle('open')
+})
 
 // window.addEventListener('load', () => {
 //   loader.classList.add('hidden')
