@@ -1,4 +1,5 @@
 @use 'loader';
+@use 'nav';
 
 :root {
   font-family: 'Karla', Inter, sans-serif;
@@ -52,38 +53,6 @@ h2 {
     height: 50px;
     width: 50px;
     user-select: none;
-  }
-}
-
-.menu-nav {
-  position: fixed;
-  top: 30px;
-  right: 30px;
-  background: none;
-  border: none;
-  z-index: 99;
-  cursor: pointer;
-  #nav-logo {
-    height: 60px;
-    width: 60px;
-    color: var(--black);
-    user-select: none;
-    transition: transform 0.2s ease-out;
-    &:hover {
-      transform: rotate(-45deg);
-    }
-  }
-  .arc {
-    transition: transform 0.2s ease-out;
-    transform-origin: center center;
-  }
-  &.open {
-    #nav-logo {
-      transform: rotate(-45deg);
-    }
-    .arc {
-      transform:  scale(1.4);
-    }
   }
 }
 
