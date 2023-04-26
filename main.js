@@ -1,16 +1,24 @@
 import './styles/main.scss'
 
-const loader = document.querySelector('.loader')
+// Toggable Menu
 
 const menu = document.querySelector('.menu-nav')
 
-menu.addEventListener('click', () => {
-  menu.classList.toggle('open')
-})
+const toggleMenu = () => menu.classList.toggle('open')
 
-// window.addEventListener('load', () => {
-//   loader.classList.add('hidden')
-// })
+const closeMenuClickOutside = (e) => {
+  if (menu.contains(e.target)) return
+  menu.classList.remove('open')
+}
+
+menu.addEventListener('click', toggleMenu)
+document.addEventListener('click', closeMenuClickOutside)
+
+const loader = document.querySelector('.loader')
+
+window.addEventListener('load', () => {
+  loader.classList.add('hidden')
+})
 
 // import * as THREE from 'three'
 // import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
