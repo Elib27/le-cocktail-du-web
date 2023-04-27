@@ -1,15 +1,15 @@
-@use 'loader';
-@use 'nav';
+@use "loader";
+@use "nav";
 
 :root {
-  font-family: 'Karla', Inter, sans-serif;
+  font-family: "Karla", Inter, sans-serif;
   color: var(--black);
-  --primary-color: #FAE16E;
-  --secondary-color: #A0CFF1;
-  --accent-color: #F75590;
+  --primary-color: #fae16e;
+  --secondary-color: #a0cff1;
+  --accent-color: #f75590;
   --black: #242424;
   --gray: #525252;
-  --white: #F6F6F6;
+  --white: #f6f6f6;
 }
 
 * {
@@ -39,7 +39,7 @@ body {
 }
 
 h2 {
-  font-family: 'Carter One';
+  font-family: "Carter One";
   letter-spacing: 3px;
   font-size: 3rem;
   text-align: center;
@@ -48,12 +48,11 @@ h2 {
 }
 
 #three-canvas {
-  padding: 20px 5vw;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 10;
-  // pointer-events: none;
+  pointer-events: none;
 }
 
 #main-logo {
@@ -68,17 +67,17 @@ h2 {
   }
 }
 
-.section-waves{
+.section-waves {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   pointer-events: none;
   &.primary {
-    color: var(--primary-color)
+    color: var(--primary-color);
   }
   &.secondary {
-    color: var(--secondary-color)
+    color: var(--secondary-color);
   }
 }
 
@@ -96,7 +95,7 @@ section {
   justify-content: center;
   align-items: center;
   h1 {
-    font-family: 'Carter One', sans-serif;
+    font-family: "Carter One", sans-serif;
     letter-spacing: 4px;
     text-align: center;
     font-size: 8vw;
@@ -165,7 +164,7 @@ section {
       align-items: center;
       max-width: 800px;
       column-gap: 40px;
-      &:nth-child(2n+1) {
+      &:nth-child(2n + 1) {
         flex-direction: row-reverse;
         align-self: flex-end;
       }
@@ -320,7 +319,7 @@ section {
       opacity: 0;
       transition: opacity 0.3s ease-out;
     }
-    &:hover{
+    &:hover {
       &::after {
         opacity: 0.1;
       }
@@ -343,7 +342,6 @@ footer {
     color: var(--secondary-color);
   }
 }
-
 
 @media screen and (max-width: 900px) {
   #cocktails {

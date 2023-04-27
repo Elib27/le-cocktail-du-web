@@ -12,7 +12,6 @@
     width: 270px;
     border-radius: 50%;
     background-color: var(--white);
-    // background: radial-gradient(var(--white) 10%, transparent 70% );
     position: absolute;
     top: 50%;
     left: 56%;
@@ -45,12 +44,13 @@
     top: 0;
     left: 0;
     padding: 0 2px;
-    font-family: 'Karla', Inter, sans-serif;
+    font-family: "Karla", Inter, sans-serif;
     font-weight: 600;
     font-size: 0.875rem;
     color: var(--black);
     text-decoration: none;
     outline: 0;
+    pointer-events: none;
 
     &.one {
       transform: translate(-38px, -10px) rotate(26deg);
@@ -93,6 +93,10 @@
 
     #nav-logo {
       transform: rotate(-45deg);
+    }
+
+    .menu-item {
+      pointer-events: all;
     }
 
     .menu-item:focus-visible {
