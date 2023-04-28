@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js'
+import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js'
 
 
 const scene = new THREE.Scene()
@@ -17,6 +18,7 @@ const renderer = new THREE.WebGLRenderer({
 })
 
 // const controls = new OrbitControls( camera, renderer.domElement )
+renderer.setPixelRatio( window.devicePixelRatio )
 renderer.setSize( window.innerWidth, window.innerHeight )
 
 
@@ -33,14 +35,14 @@ let glassMesh
 const Xoffset = 2.5
 const Yoffset = -0.5
 
-gltfLoader.load('threejs_assets/martini-glass-compressed.glb', function ( gltf ) {
+gltfLoader.load('threejs_assets/martini_glass.glb', function ( gltf ) {
 
-  const glass = gltf.scene.getObjectByName("martini_Cube014")
+  const glass = gltf.scene.getObjectByName("martini_glass")
   const glassGeometry = glass.geometry.clone()
   glassMesh = new THREE.Mesh(glassGeometry, glassMaterial)
-  glassMesh.scale.set(15, 15, 15)
+  glassMesh.scale.set(0.75, 0.75, 0.75)
   glassMesh.position.set(Xoffset, Yoffset, 0)
-	scene.add(glassMesh)
+  scene.add(glassMesh)
   
   const pageLoader = document.querySelector('.loader')
   pageLoader.classList.add('hidden')
@@ -56,7 +58,7 @@ gltfLoader.load('threejs_assets/martini-glass-compressed.glb', function ( gltf )
 
 // HDR
 
-// ne fonctionne pas
+// // ne fonctionne pas
 // const hdrEquirect = new RGBELoader().load(
 //   "/empty_warehouse.hdr",
 //   () => {
@@ -75,7 +77,7 @@ const bgTexture = new THREE.TextureLoader().load("threejs_assets/page-content.jp
 const bgGeometry = new THREE.PlaneGeometry(38, 20)
 const bgMaterial = new THREE.MeshBasicMaterial({
   map: bgTexture,
-  stencilWrite: true,
+  // stencilWrite: true,
   stencilRef: 1,
   stencilFunc: THREE.EqualStencilFunc,
   depthWrite: false,
@@ -87,7 +89,7 @@ scene.add(bgMesh)
 
 const glassMaterial = new THREE.MeshPhysicalMaterial({
   roughness: 0,
-  thickness: 0.5,
+  thickness: 2,
   transmission: 1,
   // envMap: hdrEquirect,
   normalMap: normalMapTexture, // intensity ?
@@ -201,8 +203,9 @@ animate()
 
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight
-  camera.updateProjectionMatrix()
+  renderer.setPixelRatio( window.devicePixelRatio )
   renderer.setSize(window.innerWidth, window.innerHeight)
+  camera.updateProjectionMatrix()
 }
 
 window.addEventListener('resize', onWindowResize)

@@ -5,7 +5,7 @@ function initSmoothScroll() {
 
   const lenis = new Lenis({
     lerp: 0.1,
-    mouseMultiplier: 0.75,
+    wheelMultiplier: 0.75,
     // duration: 1,
     // easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
   })
@@ -32,7 +32,7 @@ function initSmoothScroll() {
   anchors.forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault()
-      lenis.scrollTo(this.getAttribute('href'))
+      lenis.scrollTo(this.getAttribute('href'), {lerp: 0.075})
     })
   })
 }
