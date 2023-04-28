@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js'
 
+
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 
@@ -40,6 +41,9 @@ gltfLoader.load('threejs_assets/martini-glass-compressed.glb', function ( gltf )
   glassMesh.scale.set(15, 15, 15)
   glassMesh.position.set(Xoffset, Yoffset, 0)
 	scene.add(glassMesh)
+  
+  const pageLoader = document.querySelector('.loader')
+  pageLoader.classList.add('hidden')
 
   glass.geometry.dispose()
   glass.material.dispose()

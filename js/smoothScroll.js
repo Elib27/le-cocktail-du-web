@@ -4,7 +4,8 @@ import { animateGlassOnScroll } from './glassAnimation'
 function initSmoothScroll() {
 
   const lenis = new Lenis({
-    lerp: 0.1
+    lerp: 0.1,
+    mouseMultiplier: 0.75,
     // duration: 1,
     // easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
   })
