@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>404 - Page introuvable</title>
+</head>
+<body class="body-404">
+  <div class="loader">
+    <div class="animation-container">
+      <div class="tchin">TCHIN</div>
+      <div class="tchin">TCHIN</div>
+      <div class="trx-left-container">
+        <div class="try-left-container">
+          <img class="glass" src="/cocktail-logo.svg">
+        </div>
+      </div>
+      <div class="trx-right-container">
+        <div class="try-right-container">
+          <img class="glass" src="/cocktail-logo.svg">
+        </div>
+      </div>
+    </div>
+  </div>
+  <a id="main-logo" href="/">
+    <img src="/cocktail-logo.svg" alt="Le Cocktail du Web" draggable="false"/>
+  </a>
+  <div class="container-404">
+    <h1>OUUUPPS, vous cherchiez sûrement cette page :</h1>
+    <a href="/" class="home">Retour à l'accueil</a>
+  </div>
+  <script type="module">
+    import './styles/main.scss'
+    window.addEventListener("load", function () {
+      const loader = document.querySelector(".loader");
+      loader.classList.add("hidden");
+    });
+  </script>
+</body>
+</html>
