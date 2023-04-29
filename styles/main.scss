@@ -52,7 +52,7 @@ h2 {
   top: 0;
   left: 0;
   z-index: 10;
-  // pointer-events: none;
+  pointer-events: none;
 }
 
 #main-logo {
@@ -83,6 +83,9 @@ h2 {
 
 section {
   position: relative;
+  & > .layout {
+    max-width: 1400px;
+  }
 }
 
 #header-hero {
@@ -98,7 +101,7 @@ section {
     font-family: "Carter One", sans-serif;
     letter-spacing: 4px;
     text-align: center;
-    font-size: 8vw;
+    font-size: max(8vw);
     .web-hightlight {
       color: var(--accent-color);
     }
@@ -108,9 +111,6 @@ section {
     width: 100%;
     .left {
       width: 70%;
-    }
-    .right {
-      width: 30%;
     }
     p {
       font-size: clamp(12px, 2vw, 20px);
@@ -131,6 +131,7 @@ section {
     row-gap: 100px;
     column-gap: 10vw;
     padding-top: 20px;
+    margin: auto;
     img {
       max-height: 60vh;
       max-width: 100%;
@@ -262,14 +263,14 @@ section {
 
 #infos {
   background-color: var(--primary-color);
-  padding: 20px 5vw 6vw 5vw;
+  padding: 20px 5vw 4rem 5vw;
   .layout {
     width: 80%;
     margin: auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    column-gap: 2rem;
+    column-gap: 10vw;
     .informations {
       text-align: center;
       .item {
@@ -395,9 +396,92 @@ footer {
       width: 90%;
     }
   }
+  #infos {
+    .layout {
+      width: 90%;
+    }
+  }
 }
 
 @media screen and (max-width: 700px) {
+  #header-hero {
+    .hero-layout {
+      h1 {
+        font-size: max(12vw, 50px);
+      }
+      p {
+        font-size: 1rem;
+      }
+      .left {
+        width: 100%;
+      }
+    }
+  }
+  #bar {
+    .layout {
+      width: 90%;
+      margin: auto;
+      grid-template-columns: 1fr;
+      grid-template-areas: "lieu-txt" "lieu-img" "rencontres-txt" "rencontres-img" "cocktails-txt" "cocktails-img";
+      row-gap: 2rem;
+      .lieu.presentation-text {
+        grid-area: lieu-txt;
+      }
+      img.lieu {
+        grid-area: lieu-img;
+      }
+      .rencontres.presentation-text {
+        grid-area: rencontres-txt;
+      }
+      img.rencontres {
+        grid-area: rencontres-img;
+      }
+      .cocktails.presentation-text {
+        grid-area: cocktails-txt;
+      }
+      img.cocktails {
+        grid-area: cocktails-img;
+      }
+      img {
+        margin-bottom: 2rem;
+      }
+      h3 {
+        text-align: center;
+      }
+    }
+  }
+  #cocktails {
+    .layout {
+      row-gap: 50px;
+      .cocktail-item {
+        flex-direction: column-reverse !important;
+      }
+    }
+  }
+  #histoire {
+    .layout {
+      width: 90%;
+      flex-direction: column-reverse;
+      .content {
+        margin-bottom: 2rem;
+      }
+      img {
+        width: 80%;
+        align-self: center;
+      }
+    }
+  }
+  #infos {
+    .layout {
+      flex-direction: column;
+      .informations {
+        margin-bottom: 3rem;
+      }
+      .map {
+        width: 100%;
+      }
+    }
+  }
   .container-404 {
     a.home {
       font-size: 1.6rem;

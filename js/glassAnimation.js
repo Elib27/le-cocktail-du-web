@@ -203,11 +203,11 @@ function animateGlassOnMouseMove(e) {
   glassMesh.rotation.z = rotateZ
 }
 
-function animate() {
-  composer.render(scene, camera)
-	requestAnimationFrame(animate)
-}
-animate()
+// function animate() {
+//   composer.render(scene, camera)
+// 	requestAnimationFrame(animate)
+// }
+// animate()
 
 // WINDOW RESIZE
 

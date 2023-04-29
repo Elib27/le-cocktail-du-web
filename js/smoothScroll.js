@@ -23,7 +23,7 @@ function initSmoothScroll() {
   lenis.on('scroll', (e) => {
     const scrollEnd = cocktailsSection.offsetTop
     const scrollPercentage = e.animatedScroll / scrollEnd * 100
-    animateGlassOnScroll(scrollPercentage)
+    // animateGlassOnScroll(scrollPercentage)
   })
 
   // Page links

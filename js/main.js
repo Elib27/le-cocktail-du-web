@@ -6,7 +6,7 @@ import { animateGlassOnMouseMove } from './glassAnimation'
 
 initSmoothScroll()
 
-window.addEventListener('mousemove', animateGlassOnMouseMove)
+// window.addEventListener('mousemove', animateGlassOnMouseMove)
 
 // Toggable Menu
 
