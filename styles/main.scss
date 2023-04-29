@@ -129,12 +129,14 @@ section {
     grid-template-columns: 1fr 1fr;
     place-items: center;
     row-gap: 100px;
-    column-gap: 10vw;
+    column-gap: min(10vw, 150px);
     padding-top: 20px;
     margin: auto;
     img {
+      object-fit: contain;
+      width: 100%;
+      max-width: 600px;
       max-height: 60vh;
-      max-width: 100%;
     }
     .presentation-text {
       h3 {
@@ -170,7 +172,7 @@ section {
         align-self: flex-end;
       }
       img {
-        max-height: 33vh;
+        height: clamp(200px, calc(20vh + 160px), 400px);
         user-select: none;
       }
       h3 {
