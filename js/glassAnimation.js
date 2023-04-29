@@ -231,6 +231,16 @@ function hidePageLoader() {
   pageLoader.classList.add('hidden')
 }
 
-THREE.DefaultLoadingManager.onLoad = hidePageLoader
+function launchTitleAnimation() {
+  const headerHeroSection = document.querySelector('#header-hero')
+  headerHeroSection.classList.remove('paused')
+}
+
+function onLoad() {
+  hidePageLoader()
+  launchTitleAnimation()
+}
+
+THREE.DefaultLoadingManager.onLoad = onLoad
 
 export { animateGlassOnScroll, animateGlassOnMouseMove }

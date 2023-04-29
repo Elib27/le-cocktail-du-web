@@ -97,6 +97,9 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  &.paused .animated{
+    animation-play-state: paused;
+  }
   h1 {
     font-family: "Carter One", sans-serif;
     letter-spacing: 4px;
@@ -104,6 +107,18 @@ section {
     font-size: max(8vw);
     .web-hightlight {
       color: var(--accent-color);
+    }
+    .row-one {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: apparition 0.8s 0.5s cubic-bezier(0, 0, 0.26, 0.98) forwards;
+    }
+    .row-two {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: apparition 0.8s 1s cubic-bezier(0, 0, 0.26, 0.98) forwards;
     }
   }
   .hero-layout {
@@ -117,7 +132,17 @@ section {
       margin-top: 20px;
       text-align: center;
       font-style: italic;
+      opacity: 0;
+      transform: translateY(-14px);
+      animation: apparition 0.8s 1.5s cubic-bezier(0, 0, 0.26, 0.98) forwards;
     }
+  }
+}
+
+@keyframes apparition {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
