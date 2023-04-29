@@ -21,9 +21,3 @@ const closeMenuClickOutside = (e) => {
 
 menu.addEventListener('click', toggleMenu)
 document.addEventListener('click', closeMenuClickOutside)
-
-// const loader = document.querySelector('.loader')
-
-// window.addEventListener('load', () => {
-//   loader.classList.add('hidden')
-// })
