@@ -3,10 +3,13 @@ import { animateGlassOnScroll } from './glassAnimation'
 
 function initSmoothScroll() {
 
+  // Lenis setup
   const lenis = new Lenis({
     lerp: 0.1,
     wheelMultiplier: 0.75
   })
+
+  window.lenis = lenis
 
   function raf(time) {
     lenis.raf(time)
@@ -14,7 +17,7 @@ function initSmoothScroll() {
   }
   requestAnimationFrame(raf)
 
-  // Animation
+  // Animation on scroll
 
   const cocktailsSection = document.querySelector('#cocktails')
 
@@ -24,11 +27,9 @@ function initSmoothScroll() {
     animateGlassOnScroll(scrollPercentage)
   }
 
-  window.lenis = lenis
-
   lenis.on('scroll', (e) => onAnimatedScroll(cocktailsSection, e.animatedScroll))
 
-  // Page links
+  // Page links smooth scroll
   const anchors = document.querySelectorAll('a[href^="#"]')
 
   anchors.forEach(anchor => {
