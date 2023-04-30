@@ -1,11 +1,7 @@
 import * as THREE from 'three'
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js'
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js'
-import { HalfFloatType } from "three";
-import { BloomEffect, EffectComposer, EffectPass, RenderPass } from "postprocessing";
-
 
 // SETUP
 
@@ -24,21 +20,6 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
-
-const renderPass = new RenderPass(scene, camera)
-
-const bloomPass = new EffectPass(camera, new BloomEffect({intensity: 1}))
-
-// const renderTarget = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, {stencilBuffer:true});
-// const composer = new EffectComposer(renderer, renderTarget)
-const composer = new EffectComposer(renderer, {frameBufferType: HalfFloatType, stencilBuffer: true})
-composer.addPass(renderPass)
-composer.addPass(bloomPass)
-
-console.log(composer)
-
-// const controls = new OrbitControls(camera, renderer.domElement)
-
 
 // MODEL LOADER
 const gltfLoader = new GLTFLoader()
@@ -83,24 +64,25 @@ const hdrEquirect = new RGBELoader().load(
 )
 
 const textureLoader = new THREE.TextureLoader()
-const normalMapTexture = textureLoader.load("threejs_assets/normal.jpg")
+const normalMapTexture = textureLoader.load("threejs_assets/normal.webp")
 normalMapTexture.wrapS = THREE.RepeatWrapping
 normalMapTexture.wrapT = THREE.RepeatWrapping
+normalMapTexture.repeat.set(2,2)
 
 
 const glassMaterial = new THREE.MeshPhysicalMaterial({
-  roughness: 0,
+  roughness: 0.1,
   thickness: 1,
   transmission: 1,
   envMap: hdrEquirect,
   envMapIntensity: 1,
   normalMap: normalMapTexture,
   clearcoatNormalMap: normalMapTexture,
-  normalScale: new THREE.Vector2(10),
+  normalScale: new THREE.Vector2(0.3),
   stencilWrite: true,
   stencilFunc: THREE.AlwaysStencilFunc,
   stencilRef: 1,
-  stencilZPass: THREE.ReplaceStencilOp,
+  ReplaceStencilOp: THREE.ReplaceStencilOp,
 })
 
 // WEBSITE BACKGROUND TEST
@@ -203,20 +185,17 @@ function animateGlassOnMouseMove(e) {
   glassMesh.rotation.z = rotateZ
 }
 
-// function animate() {
-//   composer.render(scene, camera)
-// 	requestAnimationFrame(animate)
-// }
-// animate()
+function animate() {
+  renderer.render(scene, camera)
+  requestAnimationFrame(animate)
+}
+animate()
 
 // WINDOW RESIZE
 
 function updateCanvasOnResize() {
-  bloomPass.resolution.set(window.innerWidth, window.innerHeight)
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth, window.innerHeight)
-  composer.setPixelRatio(window.devicePixelRatio)
-  composer.setSize(window.innerWidth, window.innerHeight)
   camera.aspect = window.innerWidth / window.innerHeight
   camera.updateProjectionMatrix()
 }
