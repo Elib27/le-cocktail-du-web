@@ -203,6 +203,7 @@ section {
       img {
         height: clamp(200px, calc(20vh + 160px), 400px);
         user-select: none;
+        width: auto;
       }
       h3 {
         font-weight: 800;
