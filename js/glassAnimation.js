@@ -21,7 +21,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
 
-// MODEL LOADER
+// 3D MODEL LOADER
 const gltfLoader = new GLTFLoader()
 const dracoLoader = new DRACOLoader()
 dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/')
@@ -33,8 +33,8 @@ gltfLoader.setDRACOLoader(dracoLoader)
 
 let glassMesh
 
-const Xoffset = 2.5
-const Yoffset = -0.5
+const glassXoffset = 2.5
+const glassYoffset = -0.5
 
 gltfLoader.load('threejs_assets/martini_glass.glb', function ( gltf ) {
 
@@ -42,7 +42,8 @@ gltfLoader.load('threejs_assets/martini_glass.glb', function ( gltf ) {
   const glassGeometry = glass.geometry.clone()
   glassMesh = new THREE.Mesh(glassGeometry, glassMaterial)
   glassMesh.scale.set(0.75, 0.75, 0.75)
-  glassMesh.position.set(Xoffset, Yoffset, 0)
+  glassMesh.position.set(glassXoffset, glassYoffset, 0)
+  firstSynchroPositionToScroll()
   scene.add(glassMesh)
 
   glass.geometry.dispose()
@@ -52,10 +53,16 @@ gltfLoader.load('threejs_assets/martini_glass.glb', function ( gltf ) {
 
 	console.error( error )
 
-} )
+})
 
-// HDR
+function firstSynchroPositionToScroll() {
+  const endScrollElement = document.querySelector('#cocktails')
+  const scrollEnd = endScrollElement.offsetTop
+  const scrollPercentage = window.scrollY / scrollEnd * 100
+  animateGlassOnScroll(scrollPercentage)
+}
 
+// HDR ENVIRONMENT MAP
 const hdrEquirect = new RGBELoader().load(
   "/threejs_assets/empty_warehouse.hdr",
   () => {
@@ -63,6 +70,7 @@ const hdrEquirect = new RGBELoader().load(
   }
 )
 
+// NORMAL MAP GLASS TEXTURE
 const textureLoader = new THREE.TextureLoader()
 const normalMapTexture = textureLoader.load("threejs_assets/normal.webp")
 normalMapTexture.wrapS = THREE.RepeatWrapping
@@ -82,12 +90,12 @@ const glassMaterial = new THREE.MeshPhysicalMaterial({
   stencilWrite: true,
   stencilFunc: THREE.AlwaysStencilFunc,
   stencilRef: 1,
-  ReplaceStencilOp: THREE.ReplaceStencilOp,
+  stencilZPass: THREE.ReplaceStencilOp,
 })
 
-// WEBSITE BACKGROUND TEST
-const backgroundTexture = new THREE.TextureLoader().load("threejs_assets/page-content.jpg")
-const backgroundGeometry = new THREE.PlaneGeometry(38, 20)
+// FAKE WEBSITE BACKGROUND
+const backgroundTexture = new THREE.TextureLoader().load("threejs_assets/page-content.webp")
+const backgroundGeometry = new THREE.PlaneGeometry(40, 84,8)
 const backgroundMaterial = new THREE.MeshBasicMaterial({
   map: backgroundTexture,
   stencilWrite: true,
@@ -96,15 +104,10 @@ const backgroundMaterial = new THREE.MeshBasicMaterial({
   depthWrite: false,
 }) 
 const backgroundMesh = new THREE.Mesh(backgroundGeometry, backgroundMaterial)
-backgroundMesh.position.set(0, 0, -12)
+const bgYoffset = -30
+const bgYend = 48
+backgroundMesh.position.set(0, bgYoffset, -10)
 scene.add(backgroundMesh)
-
-
-// GEOMETRY TEST
-const geometry = new THREE.IcosahedronGeometry(1, 0)
-const IcosahedronMesh = new THREE.Mesh(geometry, glassMaterial)
-IcosahedronMesh.position.set(-1, 0, 0)
-// scene.add(IcosahedronMesh)
 
 
 // ANIMATIONS
@@ -113,13 +116,13 @@ const glassAnimations = [
   {
     from: 0,
     to: 100,
-    animate: () => {
-      backgroundMesh.position.y = 0
+    animate: (scrollPercentage) => {
+      backgroundMesh.position.y = bgYoffset + scrollPercentage * (bgYend - bgYoffset) / 100
     }
   },
   {
     from: 0,
-    to: 75,
+    to: 90,
     animate: (scrollPercentage) => {
       glassMesh.rotation.x = scrollPercentage / 8
     }
@@ -128,23 +131,23 @@ const glassAnimations = [
     from: 0,
     to: 30,
     animate: (scrollPercentage) => {
-      glassMesh.position.x = Xoffset - scrollPercentage / 6
+      glassMesh.position.x = glassXoffset - scrollPercentage / 6
     }
   },
   {
     from: 30,
-    to: 55,
+    to: 50,
     animate: (scrollPercentage) => {
-      const lastAnimationX = Xoffset - 30 / 6
-      glassMesh.position.x = lastAnimationX + (scrollPercentage - 30) / 5
+      const lastAnimationX = glassXoffset - 30 / 6
+      glassMesh.position.x = lastAnimationX + (scrollPercentage - 30) / 4
     }
   },
   {
-    from: 55,
-    to: 75,
+    from: 50,
+    to: 90,
     animate: (scrollPercentage) => {
-      const lastAnimationX = Xoffset - 30 / 6 + (55 - 30) / 5
-      glassMesh.position.x = lastAnimationX - (scrollPercentage - 55) / 4
+      const lastAnimationX = glassXoffset - 30 / 6 + (50 - 30) / 4
+      glassMesh.position.x = lastAnimationX - (scrollPercentage - 50) / 2
     }
   },
   {
@@ -161,10 +164,19 @@ const glassAnimations = [
       const lastAnimationZ = 15 / 10
       glassMesh.position.z = lastAnimationZ - (scrollPercentage - 30) / 10
     }
+  },
+  { // fallback case (go to animation end)
+    from: 90,
+    to: 9999,
+    animate: () => {
+      const finalPositionX = -20
+      glassMesh.position.x = finalPositionX
+    }
   }
 ]
 
 function animateGlassOnScroll(scrollPercentage) {
+  if (glassMesh === undefined) return
   glassAnimations.forEach(anim => {
     if (scrollPercentage >= anim.from && scrollPercentage < anim.to) {
       anim.animate(scrollPercentage)
@@ -179,8 +191,8 @@ function animateGlassOnMouseMove(e) {
   const mouseY = e.clientY - window.innerHeight / 2
   const rotateX = Math.sin(mouseY / window.innerHeight * Math.PI) * Math.PI / 10
   const rotateZ = - Math.sin(mouseX / window.innerWidth * Math.PI) * Math.PI / 20
-  glassMesh.position.x = Xoffset - rotateZ*2
-  glassMesh.position.y = Yoffset - rotateX
+  glassMesh.position.x = glassXoffset - rotateZ*2
+  glassMesh.position.y = glassYoffset - rotateX
   glassMesh.rotation.x = rotateX
   glassMesh.rotation.z = rotateZ
 }

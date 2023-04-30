@@ -14,7 +14,7 @@
   }
   .animation-container {
     display: flex;
-    column-gap: 20px;
+    column-gap: 22px;
     position: relative;
     .tchin {
       height: fit-content;
@@ -28,33 +28,33 @@
       &:nth-child(1) {
         top: -12px;
         left: 50%;
-        animation: text 2.5s 0.85s ease-out infinite;
+        animation: text 2s 0.55s ease-out infinite;
       }
       &:nth-child(2) {
         top: -22px;
         left: 45%;
-        animation: text 2.5s 0.95s ease-out infinite;
+        animation: text 2s 0.65s ease-out infinite;
       }
     }
     .glass {
       height: 40px;
     }
     .trx-left-container {
-      animation: glassXleft 1.25s -0.25s cubic-bezier(0.65, -0.01, 1, 1) infinite alternate;
+      animation: glassXleft 1s -0.4s cubic-bezier(0.65, -0.01, 1, 1) infinite alternate;
       .try-left-container {
-        animation: glassY 1.25s -0.25s cubic-bezier(0.47,-2.52, 0.61, 0.55) infinite alternate;
+        animation: glassY 1s -0.4s cubic-bezier(0.47,-2.52, 0.61, 0.55) infinite alternate;
         .glass {
-          animation: glassRotateLeft 1.25s -0.25s cubic-bezier(0.32, 0.88, 0.57, 0.96) infinite alternate;
+          animation: glassRotateLeft 1s -0.4s cubic-bezier(0.32, 0.88, 0.57, 0.96) infinite alternate;
         }
       }
     }
     .trx-right-container {
-      animation: glassXright 1.25s -0.25s cubic-bezier(0.65, -0.01, 1, 1) infinite alternate;
+      animation: glassXright 1s -0.4s cubic-bezier(0.65, -0.01, 1, 1) infinite alternate;
       .try-right-container {
-        animation: glassY 1.25s -0.25s cubic-bezier(0.47,-2.52, 0.61, 0.55) infinite alternate;
+        animation: glassY 1s -0.4s cubic-bezier(0.47,-2.52, 0.61, 0.55) infinite alternate;
       }
       .glass {
-        animation: glassRotateRight 1.25s -0.25s cubic-bezier(0.32, 0.88, 0.57, 0.96) infinite alternate;
+        animation: glassRotateRight 1s -0.4s cubic-bezier(0.32, 0.88, 0.57, 0.96) infinite alternate;
       }
     }
   }
@@ -65,7 +65,7 @@
     opacity: 0;
     transform: translate(0, 0) rotate(0);
   }
-  8% {
+  5% {
     transform: translate(-5px, -5px) rotate(-20deg);
     opacity: 1;
   }

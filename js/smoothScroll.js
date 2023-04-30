@@ -5,9 +5,7 @@ function initSmoothScroll() {
 
   const lenis = new Lenis({
     lerp: 0.1,
-    wheelMultiplier: 0.75,
-    // duration: 1,
-    // easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+    wheelMultiplier: 0.75
   })
 
   function raf(time) {
@@ -20,11 +18,15 @@ function initSmoothScroll() {
 
   const cocktailsSection = document.querySelector('#cocktails')
 
-  lenis.on('scroll', (e) => {
-    const scrollEnd = cocktailsSection.offsetTop
-    const scrollPercentage = e.animatedScroll / scrollEnd * 100
-    // animateGlassOnScroll(scrollPercentage)
-  })
+  function onAnimatedScroll(endScrollElement, scrollYpx) {
+    const scrollEnd = endScrollElement.offsetTop
+    const scrollPercentage = scrollYpx / scrollEnd * 100
+    animateGlassOnScroll(scrollPercentage)
+  }
+
+  window.lenis = lenis
+
+  lenis.on('scroll', (e) => onAnimatedScroll(cocktailsSection, e.animatedScroll))
 
   // Page links
   const anchors = document.querySelectorAll('a[href^="#"]')
