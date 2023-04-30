@@ -22,7 +22,8 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
 
-// 3D MODEL LOADER
+// 3D glass model draco loader (compressed glb)
+
 const gltfLoader = new GLTFLoader()
 const dracoLoader = new DRACOLoader()
 dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/')
@@ -30,7 +31,7 @@ dracoLoader.setDecoderConfig({ type: 'js' })
 gltfLoader.setDRACOLoader(dracoLoader)
 
 
-// MODELS AND MATERIALS
+// Models and materials
 
 let glassMesh
 
@@ -42,9 +43,12 @@ gltfLoader.load('threejs_assets/martini_glass.glb', function ( gltf ) {
   const glass = gltf.scene.getObjectByName("martini_glass")
   const glassGeometry = glass.geometry.clone()
   glassMesh = new THREE.Mesh(glassGeometry, glassMaterial)
+
   glassMesh.scale.set(0.75, 0.75, 0.75)
   glassMesh.position.set(glassXoffset, glassYoffset, 0)
+
   firstSynchroPositionToScroll()
+
   scene.add(glassMesh)
 
   glass.geometry.dispose()
@@ -63,7 +67,8 @@ function firstSynchroPositionToScroll() {
   animateGlassOnScroll(scrollPercentage)
 }
 
-// HDR ENVIRONMENT MAP
+// HDR environment map (for glass reflexion)
+
 const hdrEquirect = new RGBELoader().load(
   "threejs_assets/empty_warehouse.hdr",
   () => {
@@ -71,13 +76,15 @@ const hdrEquirect = new RGBELoader().load(
   }
 )
 
-// NORMAL MAP GLASS TEXTURE
+// Normal map glass texture
+
 const textureLoader = new THREE.TextureLoader()
 const normalMapTexture = textureLoader.load("threejs_assets/normal.webp")
 normalMapTexture.wrapS = THREE.RepeatWrapping
 normalMapTexture.wrapT = THREE.RepeatWrapping
 normalMapTexture.repeat.set(2,2)
 
+// Glass material
 
 const glassMaterial = new THREE.MeshPhysicalMaterial({
   roughness: 0.1,
@@ -94,7 +101,7 @@ const glassMaterial = new THREE.MeshPhysicalMaterial({
   stencilZPass: THREE.ReplaceStencilOp,
 })
 
-// FAKE WEBSITE BACKGROUND
+// Fake website background
 
 let backgroundTexture
 let backgroundMesh
@@ -138,7 +145,7 @@ setBackgroundMesh()
 
 scene.add(backgroundMesh)
 
-// ANIMATIONS
+// Glass Animations
 
 const glassAnimations = [
   {
@@ -231,7 +238,7 @@ function animate() {
 }
 animate()
 
-// WINDOW RESIZE
+// Window resize
 
 function updateCanvasOnResize() {
   renderer.setPixelRatio(window.devicePixelRatio)
@@ -243,7 +250,7 @@ function updateCanvasOnResize() {
 window.addEventListener('resize', updateCanvasOnResize)
 
 
-// PAGE LOADER
+// Page loader
 
 function hidePageLoader() {
   const pageLoader = document.querySelector('.loader')

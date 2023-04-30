@@ -6,7 +6,7 @@
   color: var(--black);
   --primary-color: #fae16e;
   --secondary-color: #a0cff1;
-  --accent-color: #FF674D; //f75590 //FF674D 
+  --accent-color: #FF674D;
   --black: #242424;
   --gray: #525252;
   --white: #f6f6f6;
@@ -300,7 +300,7 @@ section {
 }
 
 #quote {
-  padding: 7vw 5vw 5vw 5vw;
+  padding: 4vw 5vw 6vw 5vw;
   background-color: var(--primary-color);
   p {
     text-align: center;
