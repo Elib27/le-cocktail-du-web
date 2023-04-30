@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js'
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js'
 
+
 // SETUP
 
 const scene = new THREE.Scene()
@@ -64,7 +65,7 @@ function firstSynchroPositionToScroll() {
 
 // HDR ENVIRONMENT MAP
 const hdrEquirect = new RGBELoader().load(
-  "/threejs_assets/empty_warehouse.hdr",
+  "threejs_assets/empty_warehouse.hdr",
   () => {
     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping
   }
@@ -94,21 +95,48 @@ const glassMaterial = new THREE.MeshPhysicalMaterial({
 })
 
 // FAKE WEBSITE BACKGROUND
-const backgroundTexture = new THREE.TextureLoader().load("threejs_assets/page-content.webp")
-const backgroundGeometry = new THREE.PlaneGeometry(40, 84,8)
-const backgroundMaterial = new THREE.MeshBasicMaterial({
-  map: backgroundTexture,
-  stencilWrite: true,
-  stencilRef: 1,
-  stencilFunc: THREE.EqualStencilFunc,
-  depthWrite: false,
-}) 
-const backgroundMesh = new THREE.Mesh(backgroundGeometry, backgroundMaterial)
-const bgYoffset = -30
-const bgYend = 48
-backgroundMesh.position.set(0, bgYoffset, -10)
-scene.add(backgroundMesh)
 
+let backgroundTexture
+let backgroundMesh
+let bgYoffset = -30
+let bgYend = 48
+
+function setBackgroundMesh() {
+  if (window.innerWidth < 700) { // on mobile
+    backgroundTexture = new THREE.TextureLoader().load("threejs_assets/page-content-mobile.webp")
+    const backgroundGeometry = new THREE.PlaneGeometry(11, 86, 8)
+    const backgroundMaterial = new THREE.MeshBasicMaterial({
+      map: backgroundTexture,
+      stencilWrite: true,
+      stencilRef: 1,
+      stencilFunc: THREE.EqualStencilFunc,
+      depthWrite: false,
+    }) 
+    backgroundMesh = new THREE.Mesh(backgroundGeometry, backgroundMaterial)
+    bgYoffset = -31
+    bgYend = 53
+    backgroundMesh.position.set(0, bgYoffset, -10)
+  }
+  else { // on desktop
+    backgroundTexture = new THREE.TextureLoader().load("threejs_assets/page-content.webp")
+    const backgroundGeometry = new THREE.PlaneGeometry(40, 84, 8)
+    const backgroundMaterial = new THREE.MeshBasicMaterial({
+      map: backgroundTexture,
+      stencilWrite: true,
+      stencilRef: 1,
+      stencilFunc: THREE.EqualStencilFunc,
+      depthWrite: false,
+    }) 
+    backgroundMesh = new THREE.Mesh(backgroundGeometry, backgroundMaterial)
+    bgYoffset = -30
+    bgYend = 48
+    backgroundMesh.position.set(0, bgYoffset, -10)
+  }
+}
+
+setBackgroundMesh()
+
+scene.add(backgroundMesh)
 
 // ANIMATIONS
 
