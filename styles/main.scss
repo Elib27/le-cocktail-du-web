@@ -6,7 +6,7 @@
   color: var(--black);
   --primary-color: #fae16e;
   --secondary-color: #a0cff1;
-  --accent-color: #f75590;
+  --accent-color: #FF674D; //f75590 //FF674D 
   --black: #242424;
   --gray: #525252;
   --white: #f6f6f6;
@@ -83,6 +83,7 @@ h2 {
 
 section {
   position: relative;
+  overflow-x: hidden;
   & > .layout {
     max-width: 1400px;
   }
@@ -112,13 +113,13 @@ section {
       display: inline-block;
       opacity: 0;
       transform: translateY(-20px);
-      animation: apparition 0.8s 0.5s cubic-bezier(0, 0, 0.26, 0.98) forwards;
+      animation: apparition 0.8s cubic-bezier(0, 0, 0.26, 0.98) forwards;
     }
     .row-two {
       display: inline-block;
       opacity: 0;
       transform: translateY(-20px);
-      animation: apparition 0.8s 1s cubic-bezier(0, 0, 0.26, 0.98) forwards;
+      animation: apparition 0.8s 0.5s cubic-bezier(0, 0, 0.26, 0.98) forwards;
     }
   }
   .hero-layout {
@@ -134,7 +135,7 @@ section {
       font-style: italic;
       opacity: 0;
       transform: translateY(-14px);
-      animation: apparition 0.8s 1.5s cubic-bezier(0, 0, 0.26, 0.98) forwards;
+      animation: apparition 0.8s 1s cubic-bezier(0, 0, 0.26, 0.98) forwards;
     }
   }
 }
@@ -154,7 +155,7 @@ section {
     grid-template-columns: 1fr 1fr;
     place-items: center;
     row-gap: 100px;
-    column-gap: min(10vw, 150px);
+    column-gap: min(8vw, 150px);
     padding-top: 20px;
     margin: auto;
     img {
@@ -275,16 +276,37 @@ section {
     width: 80%;
     margin: auto;
     display: flex;
+    align-items: center;
+    justify-content: center;
     column-gap: 2rem;
     position: relative;
     img {
       object-fit: contain;
       width: 33%;
+      max-height: 600px;
     }
     .content {
       font-size: 1rem;
       text-align: justify;
+      max-width: 800px; 
+      p {
+        margin-bottom: 0.875em;
+      }
     }
+  }
+}
+
+#quote {
+  padding: 7vw 5vw 5vw 5vw;
+  background-color: var(--primary-color);
+  p {
+    text-align: center;
+    margin: auto;
+    width: 80%;
+    max-width: 1000px;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
   }
 }
 
@@ -292,7 +314,7 @@ section {
   background-color: var(--primary-color);
   padding: 20px 5vw 4rem 5vw;
   .layout {
-    width: 80%;
+    width: 85%;
     margin: auto;
     display: flex;
     justify-content: space-around;
@@ -300,6 +322,7 @@ section {
     column-gap: 10vw;
     .informations {
       text-align: center;
+      white-space: nowrap;
       .item {
         margin-bottom: 1.25rem;
       }
@@ -309,6 +332,7 @@ section {
       }
       p {
         font-size: 1.2rem;
+        line-height: 1.4;
       }
     }
     .map {
@@ -417,9 +441,34 @@ footer {
   }
 }
 
+@media screen and (max-width: 1100px) {
+  #histoire {
+    .layout {
+      width: 90%;
+    }
+  }
+}
+
 @media screen and (max-width: 900px) {
   #cocktails {
     .layout {
+      width: 90%;
+    }
+  }
+  #histoire {
+    .layout {
+      flex-direction: column-reverse;
+      .content {
+        margin-bottom: 2rem;
+      }
+      img {
+        width: 80%;
+        align-self: center;
+      }
+    }
+  }
+  #quote {
+    p {
       width: 90%;
     }
   }
@@ -445,6 +494,9 @@ footer {
     }
   }
   #bar {
+    h2 {
+      margin-bottom: 10px;
+    }
     .layout {
       width: 90%;
       margin: auto;
@@ -484,18 +536,36 @@ footer {
         flex-direction: column-reverse !important;
       }
     }
-  }
-  #histoire {
-    .layout {
-      width: 90%;
-      flex-direction: column-reverse;
-      .content {
-        margin-bottom: 2rem;
+    .fruit {
+      height: 90px;
+      width: 90px;
+      &.kiwi {
+        top: 2.5%;
+        left: 80%;
       }
-      img {
-        width: 80%;
-        align-self: center;
+      &.lemon {
+        top: 24%;
+        right: 5%;
       }
+      &.coconut {
+        top: 33%;
+        left: 5%;
+      }
+      &.watermelon {
+        top: 48%;
+        right: 5%;
+      }
+      &.banana {
+        top: 64%;
+        left: 5%;
+      }
+      &.orange {
+        bottom: 9%;
+        right: 5%;
+      }
+    }
+    .blob {
+      height: 50vh;
     }
   }
   #infos {
@@ -509,9 +579,20 @@ footer {
       }
     }
   }
+  #quote {
+    p {
+      width: 100%;
+    }
+  }
   .container-404 {
     a.home {
       font-size: 1.6rem;
     }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  h2 {
+    font-size: 2.3rem;
   }
 }
